@@ -15,7 +15,7 @@ services:
       KAFKA_CREATE_TOPICS: "sample:1:1"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
   mongo:
-    image: mongo
+    image: mongo@sha256:192e2724093257a7db12db6cbafd92e3e5d51937f13846d49ea555cea85787ce
     ports:
       - "27017:27017"
   redis:
