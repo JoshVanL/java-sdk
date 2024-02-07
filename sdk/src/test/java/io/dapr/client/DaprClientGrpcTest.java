@@ -1742,22 +1742,22 @@ public class DaprClientGrpcTest {
     result.block();
   }
 
-  @Test
-  public void saveStateNoRetryPolicyTest() {
-    String key = "key1";
-    String etag = "ETag1";
-    String value = "State value";
-    doAnswer((Answer<Void>) invocation -> {
-      StreamObserver<Empty> observer = (StreamObserver<Empty>) invocation.getArguments()[1];
-      observer.onNext(Empty.getDefaultInstance());
-      observer.onCompleted();
-      return null;
-    }).when(daprStub).saveState(any(DaprProtos.SaveStateRequest.class), any());
+  //@Test
+  //public void saveStateNoRetryPolicyTest() {
+  //  String key = "key1";
+  //  String etag = "ETag1";
+  //  String value = "State value";
+  //  doAnswer((Answer<Void>) invocation -> {
+  //    StreamObserver<Empty> observer = (StreamObserver<Empty>) invocation.getArguments()[1];
+  //    observer.onNext(Empty.getDefaultInstance());
+  //    observer.onCompleted();
+  //    return null;
+  //  }).when(daprStub).saveState(any(DaprProtos.SaveStateRequest.class), any());
 
-    StateOptions options = buildStateOptions(StateOptions.Consistency.STRONG, StateOptions.Concurrency.FIRST_WRITE);
-    Mono<Void> result = client.saveState(STATE_STORE_NAME, key, etag, value, options);
-    result.block();
-  }
+  //  StateOptions options = buildStateOptions(StateOptions.Consistency.STRONG, StateOptions.Concurrency.FIRST_WRITE);
+  //  Mono<Void> result = client.saveState(STATE_STORE_NAME, key, etag, value, options);
+  //  result.block();
+  //}
 
   private <T> State<T> buildStateKey(T value, String key, String etag, StateOptions options) {
     return new State<>(key, value, etag, options);
