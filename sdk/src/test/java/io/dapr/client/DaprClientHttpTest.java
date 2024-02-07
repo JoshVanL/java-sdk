@@ -220,7 +220,7 @@ public class DaprClientHttpTest {
             .path("/v1.0/healthz/outbound")
             .respond(204);
 
-    StepVerifier.create(daprClientHttp.waitForSidecar(10000))
+    StepVerifier.create(daprClientHttp.waitForSidecar(100))
             .expectSubscription()
             .expectComplete()
             .verify();
