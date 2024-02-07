@@ -16,7 +16,7 @@ on:
 jobs:
   build:
     name: "Build jdk:${{ matrix.java }} sb:${{ matrix.spring-boot-version }} exp:${{ matrix.experimental }}"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: false
@@ -146,7 +146,7 @@ jobs:
         path: sdk-tests/target/surefire-reports
 
   publish:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: build
     env:
       JDK_VER: 17
